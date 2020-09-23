@@ -1,0 +1,79 @@
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+**/test-launch.config
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+*.iml
+**/*.vsix
+
+hs_err_pid*
+
+
+**/.idea/
+**/.gradle
+**/node_modules/
+.DS_Store
+target/
+.classpath
+.project
+.settings
+**/.checkstyle
+target/
+bin/
+**/lib/
+out/
+server/
+.jqwik-database
+
+jdtls/
+
+!java-extension/.mvn/wrapper/maven-wrapper.jar
+
+out
+node_modules
+*.vsix
+.vscode-test
+resources/templates/css/**
+resources/templates/js/**
+resources/templates/fonts/**
+dist
+
+.factorypath
+.mvn/
+.vscode/
+HELP.md
+mvnw
+mvnw.cmd
