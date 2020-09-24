@@ -1,14 +1,9 @@
 package com.anupama.assets.models;
 
 import java.io.Serializable;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -34,13 +29,25 @@ public class Members  extends TimestampAuditConfig implements Serializable  {
    private static final long serialVersionUID = 1L;
 
    @Id
-   @Column(name="product_id")
+   @Column(name="member_id")
    @GeneratedValue(strategy=GenerationType.IDENTITY)
    @SequenceGenerator(name="PRODUCT_SEQ", initialValue = 1, allocationSize = 25)
    private Long id;
-    
+
+   @Column(name="firstName")
    private String firstName;
+
+   @Column(name="lastName")
    private String lastName;
+
+   @Column(name="emailId")
    private String emailId;
+
+   @Column(name="phoneNumber")
    private int phoneNumber;
+
+   @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+   //Below is done by default by JPA
+   @JoinColumn(name = "member_id")
+   private List<Product> products;
 }

@@ -37,6 +37,30 @@ This is a simple Spring Boot project which discreetly uses below features. Will 
 * Have avoided using direct JSON Arrays in API response. Please find reason below in link.
 > https://stackoverflow.com/questions/3503102/what-are-top-level-json-arrays-and-why-are-they-a-security-risk
 
+### JPA & Hibernate Relationship Mapping
+1. @OneToOne - One Product is owned by one member
+* It's always a best practice to put mapping in PK class who owns and has FK mapping of owned entity.
+```java
+@OneToOne
+private Members members;
+```
+2. @OneToMany(One Member can own multiple Products)
+* This mapping loads lazily by default hence leading to optimizing the performance. How? 
+Say we have 50 members, with 100000 products. Each time, we need 1 member, entire product will be loaded for this operation. So, better load products only when required. Thats's lazy loading.
+* Optional relationship type
+3. @ManyToOne(Not used here but eg. Many Products owned by One Member)
+* Eager by default. So, don't go for this unless required.
+* @ManyToOne(fetch = FetchType.LAZY) - This again makes it lazy. But with same example as above, would you want to load entire 100000 products and work in the reverse way? No? Right, choice is yours.
+* This relationship type is also optional by default but can be made mandatory - @ManyToOne(optional = false)
+* If relationship type is mandatory, we can't save Member without a Product. 
+4. @ManyToMany(One member can read multiple books. And one book can be read by multiple members)
+* Configurations for optionality, fetch type, cascading effect can be done as in others 
+5. Common Tips
+* referencedColumnName isn't required for PK mapping. For non-PK mapping, it is required
+
+### Email Integration
+* In Progress
+
 ### HateOAS(Hypermedia As The Engine of Application State)
 * In Progress
 
@@ -58,3 +82,7 @@ The following guides illustrate how to use some features concretely:
 * [Building a RESTful Web Service](https://spring.io/guides/gs/rest-service/)
 * [Serving Web Content with Spring MVC](https://spring.io/guides/gs/serving-web-content/)
 * [Building REST services with Spring](https://spring.io/guides/tutorials/bookmarks/)
+* [Hibernate Mapping](https://stackabuse.com/a-guide-to-jpa-with-hibernate-relationship-mapping/)
+* [JPA](https://www.objectdb.com/java/jpa)
+* [Twilio SMS Notification](https://www.twilio.com/docs/sms/quickstart/java)
+* [Email Integration](https://www.baeldung.com/spring-email)
